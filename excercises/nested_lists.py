@@ -3,23 +3,24 @@
 Note: If there are multiple students with the second lowest grade, order their names alphabetically and print each name on a new line.'''
 
 if __name__ == '__main__':
-    records = []
-    min_score = float('inf')
-    second_min_score = float('inf')
+    records= []
+    min_record = float('inf')
+    min_second_record = float('inf')
     
     for _ in range(int(input())):
-        name = input().strip()
-        score = float(input().strip())
-        records.append([name, score])
+        name = input()
+        score = float(input())
+        records.append([name,score])
         
-        if score < min_score:
-            second_min_score = min_score
-            min_score = score
-        elif min_score < score < second_min_score:
-            second_min_score = score
+        if min_record > score:
+            min_second_record = min_record
+            min_record = score
+        elif (min_record < score) and (min_second_record > score):
+            min_second_record = record
+            
+    second_to_last_records = [name for name,score in records if score==min_second_record]
     
-    second_min_students = [name for name, score in records if score == second_min_score]
-    second_min_students.sort()
+    second_to_last_records.sort()
     
-    for student in second_min_students:
-        print(student)
+    for record in second_to_last_records:
+        print(record)
