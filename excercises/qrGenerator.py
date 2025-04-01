@@ -1,3 +1,4 @@
+import os
 import qrcode
 from PIL import Image
 
@@ -8,8 +9,15 @@ def qrGenerator():
     qr.make(fit=True)
     image = qr.make_image(fill="Black", back_color="white")
 
-    image.save("qr_code.png")
-    Image.open("qr_code.png")
+    folder = 'QRcodes'
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+
+    file_path = os.path.join(folder,'qr_code.png')
+    image.save(file_path)
+    print(f'QR code generated in {file_path}')
+
+    Image.open(file_path)
 
 
 if __name__ == '__main__':
