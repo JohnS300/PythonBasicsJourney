@@ -34,3 +34,5 @@ def qrGenerator():
 
 if __name__ == '__main__':
     qrGenerator()
+
+    
