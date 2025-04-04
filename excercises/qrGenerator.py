@@ -31,6 +31,12 @@ def qrGenerator():
 
     Image.open(file_path).show()
 
+    
 
+    
 if __name__ == '__main__':
-    qrGenerator()
+    while True:
+        qrGenerator()
+        again = input("Generate another QR code? (y/n): ").lower()
+        if again != 'y':
+            break
