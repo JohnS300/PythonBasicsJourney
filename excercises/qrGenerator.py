@@ -29,9 +29,10 @@ def qrGenerator():
     image.save(file_path)
     print(f'QR code generated in {file_path}')
 
-    Image.open(file_path).show()
+    #Image.open(file_path).show()
 
-    
+    with open(os.path.join(folder, "qr_log.txt"),"a") as log:
+        log.write(f"{file_name}: {data}\n")
 
     
 if __name__ == '__main__':
