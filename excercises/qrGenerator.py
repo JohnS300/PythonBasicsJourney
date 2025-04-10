@@ -1,5 +1,6 @@
 import os
 import hashlib
+import pyperclip
 import qrcode # type: ignore
 from PIL import Image # type: ignore
 
@@ -29,6 +30,9 @@ def qrGenerator():
     image.save(file_path)
     print(f'QR code generated in {file_path}')
 
+    pyperclip.copy(file_path)
+    print("File path copied to clipboard.")
+    
     #Image.open(file_path).show()
 
     with open(os.path.join(folder, "qr_log.txt"),"a") as log:
