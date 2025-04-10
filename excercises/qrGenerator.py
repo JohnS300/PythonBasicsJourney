@@ -19,6 +19,11 @@ def imageCreation(x):
     image = qr.make_image(fill="Black", back_color="white")
     return image
 
+def log_data(folder, file_name, data):
+    with open(os.path.join(folder, "qr_log.txt"), "a") as log_file:
+        log_file.write(f"{file_name}: {data}\n")
+
+
 def qrGenerator():
 
     while True:
@@ -42,9 +47,8 @@ def qrGenerator():
     clipboard(file_path)
     
     #Image.open(file_path).show()
+    log_data(folder,file_name,data)
 
-    with open(os.path.join(folder, "qr_log.txt"),"a") as log:
-        log.write(f"{file_name}: {data}\n")
 
     
 if __name__ == '__main__':
