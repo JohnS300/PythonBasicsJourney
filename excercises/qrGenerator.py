@@ -4,17 +4,17 @@ import pyperclip
 import qrcode # type: ignore
 from PIL import Image # type: ignore
 
-def clipboard(x):
-    pyperclip.copy(x)
+def clipboard(file_path):
+    pyperclip.copy(file_path)
     print("File path copied to clipboard.")
 
-def encode(x):
-    hash_val = hashlib.md5(x.encode()).hexdigest()[:6]
+def encode(data):
+    hash_val = hashlib.md5(data.encode()).hexdigest()[:6]
     return hash_val
 
-def imageCreation(x):
+def imageCreation(data):
     qr = qrcode.QRCode(version=3, box_size=8, border=4)
-    qr.add_data(x)
+    qr.add_data(data)
     qr.make(fit=True)
     image = qr.make_image(fill="Black", back_color="white")
     return image
