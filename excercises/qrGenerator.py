@@ -1,6 +1,6 @@
 import os
 import hashlib
-import pyperclip
+import pyperclip # type: ignore
 import qrcode # type: ignore
 from PIL import Image # type: ignore
 
