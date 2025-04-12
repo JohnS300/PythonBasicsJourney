@@ -12,7 +12,7 @@ def encode(data):
     hash_val = hashlib.md5(data.encode()).hexdigest()[:6]
     return hash_val
 
-def imageCreation(data):
+def image_creation(data):
     qr = qrcode.QRCode(version=3, box_size=8, border=4)
     qr.add_data(data)
     qr.make(fit=True)
@@ -23,6 +23,9 @@ def log_data(folder, file_name, data):
     with open(os.path.join(folder, "qr_log.txt"), "a") as log_file:
         log_file.write(f"{file_name}: {data}\n")
 
+def folder_creation(name):
+    if not os.path.exists(name):
+        os.makedirs(name)
 
 def qrGenerator():
 
@@ -33,21 +36,21 @@ def qrGenerator():
         else:
             break
 
-    image = imageCreation(data)
+    image = image_creation(data)
+    
+    folder_name= 'QRcodes'
+    folder_creation(folder_name)
 
-    folder = 'QRcodes'
-    if not os.path.exists(folder):
-        os.makedirs(folder)
 
     file_name = f"qr_code_{encode(data)}.png"
-    file_path = os.path.join(folder,file_name)
+    file_path = os.path.join(folder_name,file_name)
     image.save(file_path)
     print(f'QR code generated in {file_path}')
 
     clipboard(file_path)
     
     #Image.open(file_path).show()
-    log_data(folder,file_name,data)
+    log_data(folder_name,file_name,data)
 
 
     
