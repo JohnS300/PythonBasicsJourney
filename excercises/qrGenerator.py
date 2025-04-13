@@ -16,7 +16,9 @@ def image_creation(data):
     qr = qrcode.QRCode(version=3, box_size=8, border=4)
     qr.add_data(data)
     qr.make(fit=True)
-    image = qr.make_image(fill="Black", back_color="white")
+    fill = input("Enter fill corol (default = black): ") or "black"
+    back = input("Enter background color (default = white): ") or "white"
+    image = qr.make_image(fill_color= fill, back_color = back)
     return image
 
 def log_data(folder, file_name, data):
