@@ -18,7 +18,13 @@ def image_creation(data):
     qr.make(fit=True)
     fill = input("Enter fill corol (default = black): ") or "black"
     back = input("Enter background color (default = white): ") or "white"
-    image = qr.make_image(fill_color= fill, back_color = back)
+    try:
+        image = qr.make_image(fill_color= fill, back_color = back)
+    except ValueError as e:
+        print(f'Color error: {e}')
+        print('Falling back to default colors.')
+        image =qr.make_image(fill_color = 'Black', back_color = "white")
+    
     return image
 
 def log_data(folder, file_name, data):
